@@ -6,20 +6,23 @@ $link_video = $_POST['link'];
 $saida = explode('=', $link_video);
 $count = count($saida);
 
-//Esse if diz o seguinte: Se o array tiver exatamente 2 de lenght, a saída do video irá mudar para a explodd '='
+//Esse if diz o seguinte: Se o array tiver exatamente 2 de lenght, a saída do video irá mudar para a explode '='
 if($count == 2){
 $id_video = $saida[1];
 
+//Se tiver o link .be, ira mudar para essa extensão!
 } else{
     $saida = explode('.be/', $link_video);
     $id_video = $saida[1];
 }
 
+//Formatos de imagens com o id do vídeo colocado no input.
 $video_max = "https://img.youtube.com/vi/$id_video/maxresdefault.jpg";
 $video_mid = "https://img.youtube.com/vi/$id_video/sddefault.jpg";
 $video_min = "https://img.youtube.com/vi/$id_video/hqdefault.jpg";
 $saida = simplexml_load_file("https://www.youtube.com/oembed?url=".$link_video."&format=xml");
 
+//Para baixar.
 copy($video_max, "maxsizedthumb.png");
 copy($video_mid, "midsizedthumb.png");
 copy($video_min, "minsizedthumb.png");
