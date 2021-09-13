@@ -4,8 +4,16 @@ $link_video = $_POST['link'];
 
 //Esse explode faz o link separar o URL do youtube da ID do vídeo.
 $saida = explode('=', $link_video);
+$count = count($saida);
 
+//Esse if diz o seguinte: Se o array tiver exatamente 2 de lenght, a saída do video irá mudar para a explodd '='
+if($count == 2){
 $id_video = $saida[1];
+
+} else{
+    $saida = explode('.be/', $link_video);
+    $id_video = $saida[1];
+}
 
 $video_max = "https://img.youtube.com/vi/$id_video/maxresdefault.jpg";
 $video_mid = "https://img.youtube.com/vi/$id_video/sddefault.jpg";
@@ -15,6 +23,7 @@ $saida = simplexml_load_file("https://www.youtube.com/oembed?url=".$link_video."
 copy($video_max, "maxsizedthumb.png");
 copy($video_mid, "midsizedthumb.png");
 copy($video_min, "minsizedthumb.png");
+
 }
 
 ?>
@@ -34,7 +43,7 @@ copy($video_min, "minsizedthumb.png");
     <h1>Baixe aqui qualquer Thumbnail do Youtube:</h1>
 
     <form method="POST" action="">
-        <input type="text" name="link" id="link" placeholder="Ex.: https://www.youtube.com/watch?v=YjMXvn-Ky6o" required>
+        <input type="text" name="link" id="link" placeholder="Ex.: https://youtu.be/pYP7OGTdYY8" required>
         <input type="submit" name="baixar" id="baixar" value="Obter thumbnail">
     </form><br><br>
 
