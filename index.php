@@ -39,11 +39,12 @@ copy($video_min, "minsizedthumb.png");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./styles/styles.css" rel="stylesheet">
     <link href="./styles/media.css" rel="stylesheet">
-    <title>Thumbnail Download</title>
+    <link rel="shortcut icon" href="./images/favcon.png">
+    <title>Baixe qualquer thumbnail do Youtube | Thumbnail Downloader</title>
 </head>
 <body>
 
-    <h1>Baixe aqui qualquer Thumbnail do Youtube:</h1>
+    <h1>Baixe aqui qualquer <span>miniatura de vídeo</span> do Youtube.</h1>
 
     <form method="POST" action="">
         <input type="text" name="link" id="link" placeholder="Ex.: https://youtu.be/pYP7OGTdYY8" required>
@@ -51,7 +52,7 @@ copy($video_min, "minsizedthumb.png");
     </form><br><br>
 
     <?php if(isset($_POST['baixar'])){ ?>
-    <h2> <span>TÍTULO DO VÍDEO:</span><br> <?php echo "$saida->title"?></h2>
+    <h2><span>TÍTULO DO VÍDEO:</span><br> <?php echo "$saida->title"?></h2>
 
     <div class="container-thumbs">
         <?php echo "<p><img src='".$video_max."'></p>" ?><br>
@@ -63,9 +64,9 @@ copy($video_min, "minsizedthumb.png");
         <?php echo "<p><img id='imgthree' src='".$video_min."'></p>" ?><br>
             <a class="btn" href="minsizedthumb.png" download>Baixar (480 x 360)</a><br><br><br>
     </div>
-
+    <h4><span>AUTOR DO VÍDEO:</span><br> <?php echo "$saida->author_name"?></h4>
     <?php } ?><br>
-
+    <hr>
 <div id="content">
     <div class="c-info"><br>
         <h2 id="c-title">Recursos de download de miniaturas do YouTube:<h2>

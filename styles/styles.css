@@ -4,11 +4,7 @@ body{
     margin: 0;
 }
 
-h1{
-    font-family: sans-serif;
-}
-
-h2{
+h1, h2, h4{
     font-family: sans-serif;
 }
 
@@ -24,6 +20,7 @@ input{
 }
 
 span{
+    font-weight: lighter;
     color: green;
 }
 
