@@ -1,32 +1,31 @@
 <?php
 if(isset($_POST['baixar'])){ //Esse isset diz que apenas se o botão Baixar for clicado que as informações serão retornadas na tela.
-$link_video = $_POST['link'];
+    $link_video = $_POST['link'];
 
-//Esse explode faz o link separar o URL do youtube da ID do vídeo.
-$saida = explode('=', $link_video);
-$count = count($saida);
+    //Esse explode faz o link separar o URL do youtube da ID do vídeo.
+    $saida = explode('=', $link_video);
+    $count = count($saida);
 
-//Esse if diz o seguinte: Se o array tiver exatamente 2 de lenght, a saída do video irá mudar para a explode '='
-if($count == 2){
-$id_video = $saida[1];
-
-//Se tiver o link .be, ira mudar para essa extensão!
-} else{
-    $saida = explode('.be/', $link_video);
+    //Esse if diz o seguinte: Se o array tiver exatamente 2 de lenght, a saída do video irá mudar para a explode '='
+    if($count == 2){
     $id_video = $saida[1];
-}
 
-//Formatos de imagens com o id do vídeo colocado no input.
-$video_max = "https://img.youtube.com/vi/$id_video/maxresdefault.jpg";
-$video_mid = "https://img.youtube.com/vi/$id_video/sddefault.jpg";
-$video_min = "https://img.youtube.com/vi/$id_video/hqdefault.jpg";
-$saida = simplexml_load_file("https://www.youtube.com/oembed?url=".$link_video."&format=xml");
+    //Se tiver o link .be, ira mudar para essa extensão!
+    } else{
+        $saida = explode('.be/', $link_video);
+        $id_video = $saida[1];
+    }
 
-//Para baixar.
-copy($video_max, "maxsizedthumb.png");
-copy($video_mid, "midsizedthumb.png");
-copy($video_min, "minsizedthumb.png");
+    //Formatos de imagens com o id do vídeo colocado no input.
+    $video_max = "https://img.youtube.com/vi/$id_video/maxresdefault.jpg";
+    $video_mid = "https://img.youtube.com/vi/$id_video/sddefault.jpg";
+    $video_min = "https://img.youtube.com/vi/$id_video/hqdefault.jpg";
+    $saida = simplexml_load_file("https://www.youtube.com/oembed?url=".$link_video."&format=xml");
 
+    //Para baixar.
+    copy($video_max, "maxsizedthumb.png");
+    copy($video_mid, "midsizedthumb.png");
+    copy($video_min, "minsizedthumb.png");
 }
 
 ?>
@@ -40,6 +39,7 @@ copy($video_min, "minsizedthumb.png");
     <link href="./styles/styles.css" rel="stylesheet">
     <link href="./styles/media.css" rel="stylesheet">
     <link rel="shortcut icon" href="./images/favcon.png">
+    <script data-ad-client="ca-pub-8240917504955379" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <title>Baixe qualquer thumbnail do Youtube | Thumbnail Downloader</title>
 </head>
 <body>
@@ -52,20 +52,20 @@ copy($video_min, "minsizedthumb.png");
     </form><br><br>
 
     <?php if(isset($_POST['baixar'])){ ?>
-    <h2><span>TÍTULO DO VÍDEO:</span><br> <?php echo "$saida->title"?></h2>
+        <h2><span>TÍTULO DO VÍDEO:</span><br> <?php echo "$saida->title"?></h2>
 
-    <div class="container-thumbs">
-        <?php echo "<p><img src='".$video_max."'></p>" ?><br>
-            <a class="btn" href="maxsizedthumb.png" download>Baixar (1280 x 720)</a><br><br>
+        <div class="container-thumbs">
+            <?php echo "<p><img src='".$video_max."'></p>" ?><br>
+                <a class="btn" href="maxsizedthumb.png" download>Baixar (1280 x 720)</a><br><br>
 
-        <?php echo "<p><img id='imgtwo' src='".$video_mid."'></p>" ?><br>
-            <a class="btn" href="midsizedthumb.png" download>Baixar (640 x 420)</a><br><br>
+            <?php echo "<p><img id='imgtwo' src='".$video_mid."'></p>" ?><br>
+                <a class="btn" href="midsizedthumb.png" download>Baixar (640 x 420)</a><br><br>
 
-        <?php echo "<p><img id='imgthree' src='".$video_min."'></p>" ?><br>
-            <a class="btn" href="minsizedthumb.png" download>Baixar (480 x 360)</a><br><br><br>
-    </div>
-    <h4><span>AUTOR DO VÍDEO:</span><br> <?php echo "$saida->author_name"?></h4>
-    <?php } ?><br>
+            <?php echo "<p><img id='imgthree' src='".$video_min."'></p>" ?><br>
+                <a class="btn" href="minsizedthumb.png" download>Baixar (480 x 360)</a><br><br><br>
+        </div>
+        <h4><span>AUTOR DO VÍDEO:</span><br> <?php echo "$saida->author_name"?></h4>
+        <?php } ?><br>
     <hr>
 <div id="content">
     <div class="c-info"><br>
@@ -99,14 +99,13 @@ copy($video_min, "minsizedthumb.png");
         <p id="c-text">A miniatura do YouTube é a imagem da capa do vídeo que fornece uma visualização do vídeo. Existem dois tipos de miniatura do YouTube: gerados automaticamente pelo YouTube e enviados pelo criador. As miniaturas enviadas pelos criadores também são chamadas de miniaturas personalizadas. Independentemente do tipo de miniatura, seu URL está oculto, você não encontra o link da miniatura no YouTube e não pode salvá-lo.</p>
     </div>
 </div>
-    
-
+        
     <footer>
         <div id="f-ctn">
             <p>Alexandre Saints ©</p>
             <ul>
-                <li><a href="https://github.com/alexandresaints" target="_blank"><img class="icons" src="./images/github-short.png"></a></li>
-                <li><a href="https://www.linkedin.com/in/alexandresaints/" target="_blank"><img class="icons" src="./images/linkedin-short.png"></a></li>
+                <li><a href="https://github.com/alexandresaints" target="_blank"><img class="icons" src="./images/github.png"></a></li>
+                <li><a href="https://www.linkedin.com/in/alexandresaints/" target="_blank"><img class="icons" src="./images/linkedin.png"></a></li>
             </ul>
         </div>
     </footer>
