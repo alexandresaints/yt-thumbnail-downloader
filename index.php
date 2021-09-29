@@ -22,10 +22,6 @@ if(isset($_POST['baixar'])){ //Esse isset diz que apenas se o botão Baixar for 
     $video_min = "https://img.youtube.com/vi/$id_video/hqdefault.jpg";
     $saida = simplexml_load_file("https://www.youtube.com/oembed?url=".$link_video."&format=xml");
 
-    //Para baixar.
-    copy($video_max, "maxsizedthumb.png");
-    copy($video_mid, "midsizedthumb.png");
-    copy($video_min, "minsizedthumb.png");
 }
 
 ?>
@@ -56,13 +52,13 @@ if(isset($_POST['baixar'])){ //Esse isset diz que apenas se o botão Baixar for 
 
         <div class="container-thumbs">
             <?php echo "<p><img src='".$video_max."'></p>" ?><br>
-                <a class="btn" href="maxsizedthumb.png" download>Baixar (1280 x 720)</a><br><br>
+                <a class="btn" href="https://img.youtube.com/vi/<?php echo $id_video ?>/maxresdefault.jpg" download>Baixar (1280 x 720)</a><br><br>
 
             <?php echo "<p><img id='imgtwo' src='".$video_mid."'></p>" ?><br>
-                <a class="btn" href="midsizedthumb.png" download>Baixar (640 x 420)</a><br><br>
+                <a class="btn" href="https://img.youtube.com/vi/<?php echo $id_video ?>/sddefault.jpg">Baixar (640 x 420)</a><br><br>
 
             <?php echo "<p><img id='imgthree' src='".$video_min."'></p>" ?><br>
-                <a class="btn" href="minsizedthumb.png" download>Baixar (480 x 360)</a><br><br><br>
+                <a class="btn" href="https://img.youtube.com/vi/<?php echo $id_video ?>/hqdefault.jpg">Baixar (480 x 360)</a><br><br><br>
         </div>
         <h4><span>AUTOR DO VÍDEO:</span><br> <?php echo "$saida->author_name"?></h4>
         <?php } ?><br>
